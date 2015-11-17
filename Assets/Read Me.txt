@@ -1,1 +1,6 @@
-TEST
+11/17 Update - Paul
+   NEW	
+	Planet generation has been incorporated.
+	‘New Game’ menu button now loads a playable scene.
+   CHANGE
+	Added this line to PerlinHeight.cs “GetComponent<MeshCollider> ().sharedMesh = GetComponent<MeshFilter> ().mesh;”
