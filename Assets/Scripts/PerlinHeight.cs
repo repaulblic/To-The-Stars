@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using System.IO;
 
  
  public class PerlinHeight: MonoBehaviour {
@@ -28,6 +30,19 @@ using System.Collections.Generic;
             */
              SetHeights();
 			GetComponent<MeshCollider> ().sharedMesh = GetComponent<MeshFilter> ().mesh;
+			//AssetDatabase.CreateAsset (GetComponent<MeshFilter> ().mesh);
+			
+
+		//Mesh meshToSave = (makeNewInstance) ? Object.Instantiate(mesh) as Mesh : mesh;
+
+		int num = 0;
+
+		while(File.Exists("Assets/test" + num + ".asset"))
+		      {num++;}
+		
+		AssetDatabase.CreateAsset(GetComponent<MeshFilter> ().mesh, "Assets/test" + num + ".asset");
+		AssetDatabase.SaveAssets();
+
      }
  
      void Update(){

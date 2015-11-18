@@ -27,14 +27,8 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 
 
-
-
-
-		//Quaternion deltaRotation = Quaternion.Euler (rotDirection * Time.deltaTime * rotSpeed);	
+		//rb.AddForce (moveDirection * moveSpeed * Time.deltaTime,ForceMode.Impulse);
 		rb.MoveRotation (rb.rotation * Quaternion.Euler (rotDirection * Time.deltaTime * rotSpeed));
-
-
-
 		rb.MovePosition(rb.position + transform.TransformDirection(moveDirection) * moveSpeed * Time.deltaTime);
 
 	}
