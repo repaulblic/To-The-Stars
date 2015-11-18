@@ -13,6 +13,8 @@ public class PerlinHeight: MonoBehaviour {
 	public float scale = 0.4f;
 	public float power = 1;
 	private Vector2 v2SampleStart = new Vector2(0, 0);
+	int seedNum = 40;
+
 	
 	
 	void Start(){
@@ -58,6 +60,9 @@ public class PerlinHeight: MonoBehaviour {
 	}
 	
 	void SetHeights(){
+
+		Random.seed = seedNum;
+
 		Mesh mesh = transform.GetComponent<MeshFilter>().mesh;
 		Vector3[] vertices = mesh.vertices;
 		Vector2 offset1 = new Vector2(Random.Range(0, 100), Random.Range(0, 100));
