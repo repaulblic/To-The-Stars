@@ -13,7 +13,7 @@ public class PerlinHeight: MonoBehaviour {
 	public float scale = 0.4f;
 	public float power = 1;
 	private Vector2 v2SampleStart = new Vector2(0, 0);
-	int seedNum = 40;
+	public int seedNum = 40;
 
 	
 	
@@ -39,14 +39,6 @@ public class PerlinHeight: MonoBehaviour {
 		
 		
 		//Mesh meshToSave = (makeNewInstance) ? Object.Instantiate(mesh) as Mesh : mesh;
-		
-		int num = 0;
-		
-		while(File.Exists("Assets/test" + num + ".asset"))
-		{num++;}
-		
-		AssetDatabase.CreateAsset(GetComponent<MeshFilter> ().mesh, "Assets/test" + num + ".asset");
-		AssetDatabase.SaveAssets();
 		
 	}
 	
