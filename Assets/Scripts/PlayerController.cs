@@ -33,5 +33,13 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	void OnCollisionEnter(UnityEngine.Collision other) 
+	{
+		if (other.gameObject.CompareTag ("Item"))
+		{
+			other.gameObject.SetActive (false);
+		}
+	}
+
 
 }

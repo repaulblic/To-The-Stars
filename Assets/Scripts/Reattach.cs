@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Reattach : MonoBehaviour {
 //		
-//This class takes a string input and sets the random seed.
+//This class takes a string input and sets the random seed.=
 //
 	// Use this for initialization
 	public void reset(string randseed){
