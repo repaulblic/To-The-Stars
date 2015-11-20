@@ -12,6 +12,7 @@ public class PlanetPan : MonoBehaviour {
 
 	void Start () {
 
+
 		currEuler = destEuler;
 		transform.eulerAngles = destEuler;
 	
@@ -25,7 +26,7 @@ public class PlanetPan : MonoBehaviour {
 			destEuler.y += rotAmount;
 
 		}
-		if (Input.GetAxis("Horizontal") < 0) {
+		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			destEuler.y -= rotAmount;
 		}
 
