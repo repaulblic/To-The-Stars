@@ -13,6 +13,7 @@ public class GameControl : MonoBehaviour {
 	public float wood;
 	public float water;
 	public float fire;
+	public int seed;
 
 	void Awake(){
 		if (control == null) 

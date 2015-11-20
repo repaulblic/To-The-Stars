@@ -53,7 +53,7 @@ public class PerlinHeight: MonoBehaviour {
 	
 	void SetHeights(){
 
-		Random.seed = seedNum;
+		//Random.seed = seedNum;
 
 		Mesh mesh = transform.GetComponent<MeshFilter>().mesh;
 		Vector3[] vertices = mesh.vertices;
