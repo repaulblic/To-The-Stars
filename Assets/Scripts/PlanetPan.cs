@@ -21,16 +21,17 @@ public class PlanetPan : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown(KeyCode.RightArrow)) {
+		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
 
 			destEuler.y += rotAmount;
 
 		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+		if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
 			destEuler.y -= rotAmount;
 		}
 
 		currEuler = Vector3.Slerp(currEuler, destEuler, Time.deltaTime * speed);
 		transform.eulerAngles = currEuler;
+
 	}
 }
