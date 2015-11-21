@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update() {
 
-		moveDirection = new Vector3(0,0,Input.GetAxisRaw("Vertical")).normalized;
+		moveDirection = new Vector3(Input.GetAxisRaw("Vertical"),0,0/*Input.GetAxisRaw("Vertical")*/).normalized;
 
 		rotDirection = new Vector3(0,Input.GetAxisRaw("Horizontal"),0).normalized;
 
@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour {
 		rb.MovePosition(rb.position + transform.TransformDirection(moveDirection) * moveSpeed * Time.deltaTime);
 
 		if(Input.GetKeyDown(KeyCode.Space) & jumpcount<3){
-			rb.AddForce (rb.position.normalized * Time.deltaTime * 500 * jump_factor);	
+			rb.AddForce (rb.position.normalized * Time.deltaTime * 500 * jump_factor);
+
 			jumpcount++;
 		}
 	}
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.CompareTag ("Item")){
 
-			other.gameObject.SetActive (false);
+			Destroy(other.gameObject);
 		}
 
 		if (other.gameObject.CompareTag ("Planet")){
