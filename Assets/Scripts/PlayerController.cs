@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 moveDirection;
 	private Vector3 rotDirection;
 	private Rigidbody rb;
+	int jumpcount = 10;
+
 
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
 
+		rb = GetComponent<Rigidbody> ();
 	}
 
 	void Update() {
@@ -21,25 +23,30 @@ public class PlayerController : MonoBehaviour {
 
 		rotDirection = new Vector3(0,Input.GetAxisRaw("Horizontal"),0).normalized;
 
-
 	}
-
+	
 	void FixedUpdate() {
-
-
-		//rb.AddForce (moveDirection * moveSpeed * Time.deltaTime,ForceMode.Impulse);
+	
 		rb.MoveRotation (rb.rotation * Quaternion.Euler (rotDirection * Time.deltaTime * rotSpeed));
 		rb.MovePosition(rb.position + transform.TransformDirection(moveDirection) * moveSpeed * Time.deltaTime);
 
-	}
-
-	void OnCollisionEnter(UnityEngine.Collision other) 
-	{
-		if (other.gameObject.CompareTag ("Item"))
-		{
-			other.gameObject.SetActive (false);
+		if(Input.GetKeyDown(KeyCode.Space) & jumpcount<3){
+			rb.AddForce (rb.position.normalized * Time.deltaTime * 500 * jump_factor);	
+			jumpcount++;
 		}
 	}
 
+	void OnCollisionEnter(UnityEngine.Collision other) {
+
+		if (other.gameObject.CompareTag ("Item")){
+
+			other.gameObject.SetActive (false);
+		}
+
+		if (other.gameObject.CompareTag ("Planet")){
+
+			jumpcount=0;
+		}
+	}
 
 }
