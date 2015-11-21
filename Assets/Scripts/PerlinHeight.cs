@@ -8,8 +8,14 @@ using System.IO;
 
 public class PerlinHeight: MonoBehaviour {
 
-	[Range(0.0f, 1.0f)]
+	[Range(0.0f, 100.0f)]
 	public float scale = 0.25f;// 0.4f;
+	[Range(0.0f, 5.0f)]
+	public float multi = 3f;
+	[Range(0.0f, 100.0f)]
+	public float scale2 = 0.25f;// 0.4f;
+	[Range(0.0f, 5.0f)]
+	public float multi2 = 3f;
 
 
 //	private Vector2 v2SampleStart = new Vector2(0, 0);	
@@ -35,6 +41,13 @@ public class PerlinHeight: MonoBehaviour {
             */
 
 		SetHeights();
+		multi = multi2;
+		scale = scale2;
+		SetHeights ();
+
+		multi = multi * 0.1f;
+		scale = scale * 0.1f;
+		SetHeights ();
 		GetComponent<MeshCollider> ().sharedMesh = GetComponent<MeshFilter> ().mesh;
 
 		//AssetDatabase.CreateAsset (GetComponent<MeshFilter> ().mesh);
@@ -66,9 +79,11 @@ public class PerlinHeight: MonoBehaviour {
 		for (int i = 0; i < vertices.Length; i++) {    
 			//float xCoord = v2SampleStart.x + vertices[i].x  * scale;
 			//float yCoord = v2SampleStart.y + vertices[i].z  * scale;
-			vertices[i].x = vertices[i].x * (1 + Mathf.PerlinNoise(vertices[i].y * 3f + offset1.x, vertices[i].z * 3f + offset1.y) * scale);
-			vertices[i].y = vertices[i].y * (1 + Mathf.PerlinNoise(vertices[i].z * 3f + offset2.x, vertices[i].x * 3f + offset2.y) * scale);
-			vertices[i].z = vertices[i].z * (1 + Mathf.PerlinNoise(vertices[i].x * 3f + offset3.x, vertices[i].y * 3f + offset3.y) * scale); 
+			vertices[i].x = vertices[i].x * (1 + Mathf.PerlinNoise(vertices[i].y  * multi + offset1.x, vertices[i].z * multi + offset1.y) * scale);
+			vertices[i].y = vertices[i].y * (1 + Mathf.PerlinNoise(vertices[i].z * multi + offset2.x, vertices[i].x * multi + offset2.y) * scale);
+			vertices[i].z = vertices[i].z * (1 + Mathf.PerlinNoise(vertices[i].x * multi + offset3.x, vertices[i].y * multi + offset3.y) * scale); 
+
+
 		}
 		mesh.vertices = vertices;
 		mesh.RecalculateBounds();
