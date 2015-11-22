@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour {
 
 		rotDirection = new Vector3(0,Input.GetAxisRaw("Horizontal"),0).normalized;
 
+		if (Input.GetKeyDown (KeyCode.P)) {
+			GameControl.control.Save ();
+		}
+
 	}
 	
 	void FixedUpdate() {
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Item")){
 
 			Destroy(other.gameObject);
+			GameControl.control.experience+=10;
 		}
 
 		if (other.gameObject.CompareTag ("Planet")){

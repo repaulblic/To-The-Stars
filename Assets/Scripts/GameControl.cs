@@ -35,12 +35,13 @@ public class GameControl : MonoBehaviour {
 	public void Save()
 	{
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/PlayerInfo.dat");
+		FileStream file = File.Create (Application.persistentDataPath + "/PlayerInfo.watermellon");
 
 		PlayerData data = new PlayerData (health,experience,wood,water,fire);
 
 		bf.Serialize (file, data);
 		file.Close();
+		Debug.Log("File Saved");
 	}
 
 	public void load ()
@@ -57,6 +58,7 @@ public class GameControl : MonoBehaviour {
 			wood = data.wood;
 			fire = data.fire;
 			water = data.water;
+			Debug.Log("File Loaded");
 		}
 	}
 }

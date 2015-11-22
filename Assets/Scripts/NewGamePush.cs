@@ -10,4 +10,7 @@ public class NewGamePush : MonoBehaviour {
 		TF.SetActive (true);
 	}
 
+
+
+
 }
