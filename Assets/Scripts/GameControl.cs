@@ -37,7 +37,7 @@ public class GameControl : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (Application.persistentDataPath + "/PlayerInfo.watermellon");
 
-		PlayerData data = new PlayerData (health,experience,wood,water,fire);
+		PlayerData data = new PlayerData (health,experience,wood,water,fire,seed);
 
 		bf.Serialize (file, data);
 		file.Close();
@@ -58,6 +58,8 @@ public class GameControl : MonoBehaviour {
 			wood = data.wood;
 			fire = data.fire;
 			water = data.water;
+			seed = data.seed;
+			UnityEngine.Random.seed=seed;
 			Debug.Log("File Loaded");
 		}
 	}
@@ -71,14 +73,16 @@ public class PlayerData
 	public float wood;
 	public float water;
 	public float fire;
+	public int seed;
 
-	public PlayerData(float h, float e, float w, float wa, float f)
+	public PlayerData(float h, float e, float w, float wa, float f,int s)
 	{
 		health = h;
 		experience = e;
 		wood = w;
 		water = wa;
 		fire = f;
+		seed = s;
 	}
 	
 

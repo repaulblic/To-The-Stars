@@ -5,5 +5,7 @@ public class LoadPush : MonoBehaviour {
 
 	public void loadpush(){
 		GameControl.control.load();
+			Application.LoadLevel(2);
+
 	}
 }
