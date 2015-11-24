@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 rotDirection;
 	private Rigidbody rb;
 	int jumpcount = 0;
+	public GameObject light;
+	int batterycount = 0;
 
 
 	void Start () {
@@ -23,8 +25,24 @@ public class PlayerController : MonoBehaviour {
 
 		rotDirection = new Vector3(0,Input.GetAxisRaw("Horizontal"),0).normalized;
 
+		// Press P to save
 		if (Input.GetKeyDown (KeyCode.P)) {
 			GameControl.control.Save ();
+		}
+		// Press L to turn on flashlight
+		if (Input.GetKeyDown (KeyCode.L)) {
+			gameObject.GetComponentInChildren<Light>().enabled= !gameObject.GetComponentInChildren<Light>().enabled;
+		}
+
+
+		if (gameObject.GetComponentInChildren<Light> ().enabled & batterycount<241) {
+			batterycount++;
+		}
+		if (!gameObject.GetComponentInChildren<Light> ().enabled & batterycount>0) {
+			batterycount--;
+		}
+		if (batterycount == 240) {
+			gameObject.GetComponentInChildren<Light> ().enabled = false;
 		}
 
 	}
@@ -53,24 +71,29 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.CompareTag ("Planet") & jumpcount>0){
 
-
 			jumpcount--;
 		}
+
 
 	}
 
 
-	public Texture2D emptyProgressBar; // Set this in inspector.
+
 	public Texture2D fullProgressBar; // Set this in inspector.
-	
+
+
+	public Texture2D fullBattertyBar;
 	
 	void OnGUI() {
-		
-		//GUI.DrawTexture(new Rect(0, 0, 100, 50), emptyProgressBar);
+
+
 		GUI.DrawTexture(new Rect(25, 10, 2*(80-jumpcount), 25), fullProgressBar);
-		
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		GUI.Label(new Rect(25, 10, (80)*2, 25), string.Format("Fuel"));
+
+		GUI.DrawTexture(new Rect(25, 50, (0.666f*(240-batterycount)), 25), fullBattertyBar);
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		GUI.Label(new Rect(25, 50, (240* 0.666f), 25), string.Format("Battery"));
 	}
 
 }
