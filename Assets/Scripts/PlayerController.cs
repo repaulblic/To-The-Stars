@@ -25,11 +25,8 @@ public class PlayerController : MonoBehaviour {
 
 		rotDirection = new Vector3(0,Input.GetAxisRaw("Horizontal"),0).normalized;
 
-		// Press P to save
-		if (Input.GetKeyDown (KeyCode.P)) {
-			GameControl.control.Save ();
-		}
-		// Press L to turn on flashlight
+
+		// Press L to turn on flashlight begin
 		if (Input.GetKeyDown (KeyCode.L)) {
 			gameObject.GetComponentInChildren<Light>().enabled= !gameObject.GetComponentInChildren<Light>().enabled;
 		}
@@ -44,6 +41,7 @@ public class PlayerController : MonoBehaviour {
 		if (batterycount == 240) {
 			gameObject.GetComponentInChildren<Light> ().enabled = false;
 		}
+		// Flashlight end
 
 	}
 	
