@@ -14,6 +14,7 @@ public class GameControl : MonoBehaviour {
 	public float water;
 	public float fire;
 	public int seed;
+	public string seedString;
 
 	void Awake(){
 		if (control == null) 
@@ -60,7 +61,7 @@ public class GameControl : MonoBehaviour {
 			water = data.water;
 			seed = data.seed;
 			UnityEngine.Random.seed=seed;
-			Debug.Log("File Loaded");
+			//Debug.Log("File Loaded");
 		}
 	}
 }

@@ -13,7 +13,8 @@ public class ItemGen : MonoBehaviour {
 
 
 
-		plane = GameObject.Find("Planet").GetComponent<FauxGravityAttractor>();
+		//plane = GameObject.Find("Planet").GetComponent<FauxGravityAttractor>();
+		plane = gameObject.GetComponent<FauxGravityAttractor>();
 
 		PlaceCubes();
 	
