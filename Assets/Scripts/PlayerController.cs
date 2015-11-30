@@ -61,11 +61,27 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionStay(UnityEngine.Collision other) {
 
-		if (other.gameObject.CompareTag ("Item")){
 
+		switch (other.gameObject.tag) {
+		case "Item":
+			Destroy(other.gameObject);break;
+		case "Metal":
 			Destroy(other.gameObject);
-			GameControl.control.experience+=10;
+			GameControl.control.metal+=10;break;
+		case "Water":
+			Destroy(other.gameObject);
+			GameControl.control.water+=10;break;
+		case "Ice":
+			Destroy(other.gameObject);
+			GameControl.control.ice+=10;break;
+		case "Wood":
+			Destroy(other.gameObject);
+			GameControl.control.wood+=10;break;
+		case "Fire":
+			Destroy(other.gameObject);
+			GameControl.control.fire+=10;break;
 		}
+
 
 		if (other.gameObject.CompareTag ("Planet") & jumpcount>0){
 
