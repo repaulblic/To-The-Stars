@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour {
 	int jumpcount = 0;
 	public GameObject light;
 	int batterycount = 0;
-
+	private int add;
+	private string[] ind = {"Metal","Water","Ice","Wood","Fire"};
 
 	void Start () {
 
@@ -61,10 +62,21 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionStay(UnityEngine.Collision other) {
 
+		if (other.gameObject.tag.Equals("Item")){
+			Destroy(other.gameObject);
+			int which = Random.Range(0, 5);
+			switch (which) {
+			case 0: GameControl.control.metal+=10;break;
+			case 1: GameControl.control.water+=10;break;
+			case 2: GameControl.control.ice+=10;break;
+			case 3: GameControl.control.wood+=10;break;
+			case 4: GameControl.control.fire+=10;break;
+			}
+			//TODO should draw and print on the screen: ind[which] Resources +1
 
+		}
+		/*
 		switch (other.gameObject.tag) {
-		case "Item":
-			Destroy(other.gameObject);break;
 		case "Metal":
 			Destroy(other.gameObject);
 			GameControl.control.metal+=10;break;
@@ -81,7 +93,7 @@ public class PlayerController : MonoBehaviour {
 			Destroy(other.gameObject);
 			GameControl.control.fire+=10;break;
 		}
-
+		*/
 
 		if (other.gameObject.CompareTag ("Planet") & jumpcount>0){
 
