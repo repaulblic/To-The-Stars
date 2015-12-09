@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public float rotSpeed = 150;
 	private Vector3 moveDirection;
 	private Vector3 rotDirection;
+	public int batteryMax = 240;
+	public int jumpMax = 80;
 	private Rigidbody rb;
 	int jumpcount = 0;
 	public GameObject light;
@@ -33,16 +35,20 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
-		if (gameObject.GetComponentInChildren<Light> ().enabled & batterycount<241) {
+		if (gameObject.GetComponentInChildren<Light> ().enabled & batterycount<batteryMax) {
 			batterycount++;
 		}
 		if (!gameObject.GetComponentInChildren<Light> ().enabled & batterycount>0) {
 			batterycount--;
 		}
-		if (batterycount == 240) {
+		if (batterycount == batteryMax) {
 			gameObject.GetComponentInChildren<Light> ().enabled = false;
 		}
 		// Flashlight end
+
+		if (Input.GetKeyDown (KeyCode.P)) {
+			GameControl.control.Save ();
+		}
 
 	}
 	
@@ -51,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 		rb.MoveRotation (rb.rotation * Quaternion.Euler (rotDirection * Time.deltaTime * rotSpeed));
 		rb.MovePosition(rb.position + transform.TransformDirection(moveDirection) * moveSpeed * Time.deltaTime);
 
-		if(Input.GetKey(KeyCode.Space) & jumpcount<81){
+		if(Input.GetKey(KeyCode.Space) & jumpcount<jumpMax){
 			rb.AddRelativeForce (Vector3.up * 500 * Time.deltaTime * jump_factor);
 
 
@@ -113,11 +119,11 @@ public class PlayerController : MonoBehaviour {
 	void OnGUI() {
 
 
-		GUI.DrawTexture(new Rect(25, 10, 2*(80-jumpcount), 25), fullProgressBar);
+		GUI.DrawTexture(new Rect(25, 10, (160f/jumpMax)*(jumpMax-jumpcount), 25), fullProgressBar);
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		GUI.Label(new Rect(25, 10, (80)*2, 25), string.Format("Fuel"));
 
-		GUI.DrawTexture(new Rect(25, 50, (0.666f*(240-batterycount)), 25), fullBattertyBar);
+		GUI.DrawTexture(new Rect(25, 50, ((160f/batteryMax)*(batteryMax-batterycount)), 25), fullBattertyBar);
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 		GUI.Label(new Rect(25, 50, (240* 0.666f), 25), string.Format("Battery"));
 	}
