@@ -3,32 +3,42 @@ using System.Collections;
 
 public class EnemyGenerator: MonoBehaviour
 {
-	//public PlayerHealth playerHealth;       
-	public GameObject enemy;                
-	public float spawnTime = 3f;            
-	public Transform[] spawnPoints;         
+	public GameObject enemy;
+	public int Amount=15;
+	private FauxGravityAttractor plane;
+
+	// Use this for initialization
+	void Start () {
 
 
-	void Start ()
-	{
-		
-		InvokeRepeating ("Spawn", spawnTime, spawnTime);
+
+		//plane = GameObject.Find("Planet").GetComponent<FauxGravityAttractor>();
+		plane = gameObject.GetComponent<FauxGravityAttractor>();
+
+		GenEnemy();
+
 	}
 
+	// Update is called once per frame
+	void Update () {
 
-	void Spawn ()
+	}
+
+	Vector3 GeneratedPosition ()
+
 	{
-		// If the player has no health left...
-		/*if(playerHealth.currentHealth <= 0f)
+		return Random.onUnitSphere * 110;
+	}
+
+	void GenEnemy()
+	{
+		for(int i = 0; i < Amount; i++)
 		{
-			// ... exit the function.
-			return;
-		}*/
+			GameObject item = (GameObject)Instantiate(enemy, GeneratedPosition(), Quaternion.identity);
+			FauxGravityBody fgb = item.GetComponent<FauxGravityBody>();
+			fgb.attractor = plane;
 
-
-		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
-
-		// Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-		Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+			//Instantiate(cube, GeneratedPosition(), Quaternion.identity);
+		}
 	}
 }

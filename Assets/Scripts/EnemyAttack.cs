@@ -30,7 +30,8 @@ public class EnemyAttack : MonoBehaviour {
 
 	void onTriggerExit (Collider other){
 		if (other.gameObject == player) {
-			playerInRange = false;}
+			playerInRange = false;
+			a.SetBool ("InRange", false);}
 	}
 
 	// Update is called once per frame
@@ -50,8 +51,8 @@ public class EnemyAttack : MonoBehaviour {
 
 	void Attack(){
 
-		a.SetTrigger ("Attack");
 		timer = 0f;
+		a.SetTrigger ("Attack");
 
 		/*if (player.currentHealth > 0) {
 			player.takeDamage (power);}*/
