@@ -13,12 +13,12 @@ public class ResourcesDisplay : MonoBehaviour {
 	void Start () {
 		GameObject theGame = GameObject.Find("GameManager");
 		GameControl game = theGame.GetComponent<GameControl>();
-		experienceText.text = "Experience: "+game.experience.ToString();
-		metalText.text = "Metal Resources: " + game.metal.ToString ();
-		waterText.text = "Water Resources: " + game.water.ToString ();
-		iceText.text = "Ice Resources: " + game.ice.ToString ();
-		fireText.text = "Fuel Resources: " + game.fire.ToString ();
-		woodText.text = "Wood Resources: " + game.wood.ToString ();
+		experienceText.text = "Experience: "+GameControl.control.experience.ToString();
+		metalText.text = "Metal Resources: " + GameControl.control.metal.ToString ();
+		waterText.text = "Water Resources: " + GameControl.control.water.ToString ();
+		iceText.text = "Ice Resources: " + GameControl.control.ice.ToString ();
+		fireText.text = "Fuel Resources: " + GameControl.control.fire.ToString ();
+		woodText.text = "Wood Resources: " + GameControl.control.wood.ToString ();
 
 	}
 	

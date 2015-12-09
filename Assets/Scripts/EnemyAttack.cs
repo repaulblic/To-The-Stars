@@ -12,6 +12,7 @@ public class EnemyAttack : MonoBehaviour {
 	EnemyHealth enemyHealth;
 	bool playerInRange;
 	float timer;
+	bool att = false;
 
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -22,24 +23,31 @@ public class EnemyAttack : MonoBehaviour {
 	}
 	
 
-	void OnTriggerEnter (Collider other) {
+	void OnCollisionEnter (UnityEngine.Collision other) {
 		if (other.gameObject == player) {
+			//Debug.Log("ENTER");
 			playerInRange = true;}
 	
 	}
+	
 
-	void onTriggerExit (Collider other){
+	void onCollisionExit (UnityEngine.Collision other){
 		if (other.gameObject == player) {
+			//Debug.Log("RESET");
 			playerInRange = false;
-			a.ResetTrigger ("Attack");}
+			a.Play("monster2WalkkForward");
+		}
 	}
 
 	// Update is called once per frame
 	void Update(){
 		timer += Time.deltaTime;
 
-		if(timer>= attackSpeed && playerInRange && enemyHealth.currentHealth>0){
-			Attack ();
+		if(timer>= attackSpeed & playerInRange & enemyHealth.currentHealth>0){
+			// Attack ();
+			a.Play ("monster2Attack1");
+
+
 		}
 
 		/*if (playerHealth.current <= 0) {
@@ -54,7 +62,10 @@ public class EnemyAttack : MonoBehaviour {
 		timer = 0f;
 		a.SetTrigger ("Attack");
 
+
+
 		/*if (player.currentHealth > 0) {
 			player.takeDamage (power);}*/
 	}
+
 }

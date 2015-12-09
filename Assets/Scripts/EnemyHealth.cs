@@ -37,6 +37,12 @@ public class EnemyHealth : MonoBehaviour {
 			// ... move the enemy down by the sinkSpeed per second.
 			transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
 		}
+		if(currentHealth <= 0)
+		{
+			// ... the enemy is dead.
+			enemyAudio.Play ();
+			Death ();
+		}
 	}
 
 

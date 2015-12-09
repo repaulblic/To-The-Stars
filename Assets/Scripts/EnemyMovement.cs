@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour {
 		
 	//Navigate toward player
 	void Update () {
-		nav.SetDestination (player.position);
+		//nav.SetDestination (player.position);
 		enemy.rotation = Quaternion.Slerp (enemy.rotation, Quaternion.LookRotation (player.position - enemy.position), rotationSpeed* Time.deltaTime);
 		enemy.position += enemy.forward * moveSpeed * Time.deltaTime;
 	}
