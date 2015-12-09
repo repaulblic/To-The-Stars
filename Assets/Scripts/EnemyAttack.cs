@@ -31,7 +31,7 @@ public class EnemyAttack : MonoBehaviour {
 	void onTriggerExit (Collider other){
 		if (other.gameObject == player) {
 			playerInRange = false;
-			a.SetBool ("InRange", false);}
+			a.ResetTrigger ("Attack");}
 	}
 
 	// Update is called once per frame
