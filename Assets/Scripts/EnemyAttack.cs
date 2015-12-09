@@ -12,7 +12,7 @@ public class EnemyAttack : MonoBehaviour {
 	EnemyHealth enemyHealth;
 	bool playerInRange;
 	float timer;
-	// Use this for initialization
+
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		//playerHealth = player.getComponent<PlayerHealth>();
@@ -21,7 +21,7 @@ public class EnemyAttack : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
+
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject == player) {
 			playerInRange = true;}
