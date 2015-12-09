@@ -15,6 +15,11 @@ public class ClicktoLoad : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		DontDestroyOnLoad (gameObject);
+		gameObject.transform.position = Vector3.zero;
+		gameObject.GetComponent<EarthMove> ().enabled = false;
 		Application.LoadLevel(index);
+		//gameObject.GetComponent<ItemGen> ().enabled = true;
+		//DontDestroyOnLoad
 	}
 }
