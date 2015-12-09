@@ -46,7 +46,7 @@ public class EnemyAttack : MonoBehaviour {
 		}*/
 	}
 
-	//attack the player
+
 
 	void Attack(){
 

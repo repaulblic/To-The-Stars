@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	void Awake ()
 	{
-		// Setting up the references.
+
 		anim = GetComponent <Animator> ();
 		enemyAudio = GetComponent <AudioSource> ();
 		hitParticles = GetComponentInChildren <ParticleSystem> ();

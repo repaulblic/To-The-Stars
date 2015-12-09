@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour {
 		nav = GetComponent<NavMeshAgent> ();
 	}
 
+	//Navigate toward player
 	void Update () {
 		nav.SetDestination (player.position);
 
